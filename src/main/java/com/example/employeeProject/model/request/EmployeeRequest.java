@@ -18,7 +18,7 @@ EmployeeRequest {
     private String eMail;
     private String city;
     private Gender gender;
-//    private MultipartFile file;
+    private MultipartFile file;
 
 
 }

@@ -55,6 +55,7 @@ public class EmployeeService implements IEmployeeService {
             }
             employee.setCity(employeeRequest.getCity());
             employee.setEMail(employeeRequest.getEMail());
+            employee.setFile(this.fileUpload(employeeRequest.getFile()));
             employee.setActive(true);
             employee.setDeleted(false);
             employeeRepository.save(employee);
@@ -125,19 +126,16 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    //public final String UPLOAD_DIR="C:\\\\Users\\\\OMS_Pune\\\\Downloads\\\\fileUpload\"+userFile.getOriginalFilename()";
-    public Object fileUpload(MultipartFile userFile) throws Exception {
-        //File file = new File("C:\\Users\\OMS_Pune\\Downloads\\fileUpload" + userFile.getOriginalFilename());
-        if (userFile.isEmpty() && userFile != null) {
-            String storagePath = "C:\\Users\\vinod\\Downloads\\Picture";
+    public String fileUpload(MultipartFile userFile) throws Exception {
+        if (!userFile.isEmpty() && userFile != null) {
+            String storagePath = "C:\\Users\\oms-desktop\\Downloads\\picture";
             String originalFilename = userFile.getOriginalFilename();
-            // file.createNewFile();
-            //FileOutputStream fos = new FileOutputStream(file);
             Path path = Paths.get(storagePath, originalFilename);
             Files.write(path, userFile.getBytes());
             return originalFilename;
+        }else {
+            throw new Exception("file uploaded");
         }
-        return "file uploaded";
     }
 
     @Override

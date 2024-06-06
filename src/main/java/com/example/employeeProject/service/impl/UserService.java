@@ -45,7 +45,11 @@ public class UserService implements IUserService {
             return "updated";
         } else {
             User user = new User();
-            user.setUserName(userRequest.getUserName());
+            if (userRepository.existsByUserName(userRequest.getUserName())){
+                throw new Exception("userName already exists");
+            }else {
+                user.setUserName(userRequest.getUserName());
+            }
             user.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
             int otp=otpService.generateOTP(userRequest.getUserName());
             System.out.println("OTP: "+otp);

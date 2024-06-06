@@ -23,7 +23,7 @@ EmployeeController {
     private IEmployeeService iEmployeeService;
 
     @PostMapping("/saveOrUpdate")
-    public ResponseEntity<?>saveOrUpdateEmployee(@RequestBody EmployeeRequest employeeRequest){
+    public ResponseEntity<?>saveOrUpdateEmployee(@ModelAttribute EmployeeRequest employeeRequest){
         try {
             return new ResponseEntity(iEmployeeService.saveOrUpdateEmployee(employeeRequest), HttpStatus.OK);
         }catch (Exception e ){

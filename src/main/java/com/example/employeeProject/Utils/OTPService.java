@@ -30,7 +30,6 @@ public class OTPService {
         //int otp=123456;
         System.out.println(" generated otp:-"+ otp);
         cache.put(key, otp);
-
         return otp;
     }
 
